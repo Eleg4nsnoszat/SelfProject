@@ -1,5 +1,6 @@
 package Util;
 
+import Pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,8 @@ import java.time.Duration;
 public class util {
 
     public static WebDriver driver;
+
+    public static HomePage homePage;
 
 
     public static WebElement WaitForTheElement(WebDriver driver, WebElement element){
@@ -37,5 +40,9 @@ public class util {
 
     public static void quitBrowser() {
         driver.quit();
+    }
+
+    public static void LogOut(){
+        homePage.clickLogOutBtn();
     }
 }

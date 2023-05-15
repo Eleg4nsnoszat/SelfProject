@@ -25,6 +25,9 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'Delete Account')]")
     WebElement deleteBtn;
 
+    @FindBy(xpath = "//a[contains(text(),'Logout')]")
+    WebElement logOutBtn;
+
 
 
     public HomePage(WebDriver driver){
@@ -38,6 +41,10 @@ public class HomePage {
 
     public void clickDeleteBtn(){
         util.WaitForTheElement(driver, deleteBtn).click();
+    }
+
+    public void clickLogOutBtn(){
+        util.WaitForTheElement(driver,logOutBtn).click();
     }
 
 }
