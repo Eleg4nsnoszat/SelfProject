@@ -1,7 +1,6 @@
 package Test;
 
-import Pages.HomePage;
-import Pages.LogInPage;
+import Pages.*;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,9 +10,15 @@ import org.junit.jupiter.api.Test;
 public class RegistrationTest {
 
 
-    LogInPage logInPage;
+    SignUpPage logInPage;
+
+    RegistrationPage signUpPage;
 
     HomePage homePage;
+
+    AccountCreatedPage accountCreatedPage;
+
+    AccountDeletedPage accountDeletedPage;
 
 
     @BeforeAll
@@ -24,7 +29,11 @@ public class RegistrationTest {
     @BeforeEach
     public void setUp(){
         util.getChromeDriver();
-        logInPage = new LogInPage(util.driver);
+        logInPage = new SignUpPage(util.driver);
+        homePage = new HomePage(util.driver);
+        signUpPage = new RegistrationPage(util.driver);
+        accountCreatedPage = new AccountCreatedPage(util.driver);
+        accountDeletedPage = new AccountDeletedPage(util.driver);
     }
 
     @AfterEach
@@ -36,7 +45,12 @@ public class RegistrationTest {
 
     @Test
     public void successfulRegistration(){
-        logInPage.RegisterWithUser("url","correctUsername", "correctEmail");
+        logInPage.SignUpWithUser("url","correctUsername", "correctEmail");
+        signUpPage.RegisterWithUser("correctPassword","firstName","lastName","city","zipCode",
+                "mobileNumber","state","address1","address2");
+        accountCreatedPage.clickContinueBtn();
+        homePage.clickDeleteBtn();
+        accountDeletedPage.clickContinueBtn();
     }
 
 }
