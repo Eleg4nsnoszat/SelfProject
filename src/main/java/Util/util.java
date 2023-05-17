@@ -2,6 +2,7 @@ package Util;
 
 import Pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,5 +45,10 @@ public class util {
 
     public static void LogOut(){
         homePage.clickLogOutBtn();
+    }
+
+    public static void acceptAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
     }
 }

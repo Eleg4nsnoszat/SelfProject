@@ -19,7 +19,7 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(), 'Cart')]")
     WebElement cartBtn;
 
-    @FindBy(xpath = "//i[contains(@class, 'fa fa-envelope')]")
+    @FindBy(xpath = "//a[contains(text(), 'Contact us')]")
     WebElement contactUsBtn;
 
     @FindBy(xpath = "//a[contains(text(),'Delete Account')]")
@@ -45,6 +45,10 @@ public class HomePage {
 
     public void clickLogOutBtn(){
         util.WaitForTheElement(driver,logOutBtn).click();
+    }
+
+    public void clickContactUsBtn(){
+        util.WaitForTheElement(driver,contactUsBtn).click();
     }
 
 }
