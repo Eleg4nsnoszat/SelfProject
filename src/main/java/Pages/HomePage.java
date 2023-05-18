@@ -28,6 +28,9 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'Logout')]")
     WebElement logOutBtn;
 
+    @FindBy(xpath = "//a[contains(text(),'Test Cases')]")
+    WebElement testCasesBtn;
+
 
 
     public HomePage(WebDriver driver){
@@ -49,6 +52,10 @@ public class HomePage {
 
     public void clickContactUsBtn(){
         util.WaitForTheElement(driver,contactUsBtn).click();
+    }
+
+    public void clickTestCasesBtn(){
+        util.WaitForTheElement(driver,testCasesBtn).click();
     }
 
 }

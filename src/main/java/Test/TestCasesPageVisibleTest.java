@@ -8,12 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LogInTest {
+public class TestCasesPageVisibleTest {
+
 
     HomePage homePage;
 
-
-    LogInPage logInPage;
+    TestCasesPage testCasesPage;
 
 
     @BeforeAll
@@ -25,7 +25,7 @@ public class LogInTest {
     public void setUp() {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
-        logInPage = new LogInPage(util.driver);
+        testCasesPage = new TestCasesPage(util.driver);
     }
 
     @AfterEach
@@ -35,15 +35,9 @@ public class LogInTest {
 
 
     @Test
-    public void successLogIn(){
-        logInPage.LogInWithUser("url","loginCorrectPassword", "loginCorrectEmail");
-        homePage.clickLogOutBtn();
-    }
-
-    @Test
-    public void LogInWithIncorrectEmailAndPassword(){
-        logInPage.LogInWithIncorrectData("url","incorrectEmail","incorrectPassword");
-        assertEquals(logInPage.getFailedLogInText(),"Your email or password is incorrect!");
+    public void testCasesVisibleTest(){
+        testCasesPage.VerifyTestCasesPage("url");
+        assertEquals(testCasesPage.getTestCasesTitle(),"TEST CASES");
     }
 
 
