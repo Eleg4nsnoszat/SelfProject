@@ -2,16 +2,16 @@ package Test;
 
 import Pages.HomePage;
 import Pages.ProductsAndDetailsPage;
-import Util.ReadFromConfig;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ViewProductsAndDetailsTest {
+public class SearchProductTest {
 
     HomePage homePage;
 
@@ -34,19 +34,15 @@ public class ViewProductsAndDetailsTest {
         util.quitBrowser();
     }
 
-    @Test
-    public void viewProductsAndDetailsTest(){
+    @ParameterizedTest
+    @CsvFileSource(resources = "/Product.csv", numLinesToSkip = 1)
+    public void searchForProduct(String product){
         productsAndDetailsPage.goToProductsPage();
-        assertEquals(productsAndDetailsPage.getAllProductsText(),"ALL PRODUCTS");
-        productsAndDetailsPage.clickViewProductBtn();
-        assertEquals(productsAndDetailsPage.getProductAvailability(),"Availability:");
-        assertEquals(productsAndDetailsPage.getProductBrand(),"Brand:");
-        assertEquals(productsAndDetailsPage.getProductName(),"Blue Top");
-        assertEquals(productsAndDetailsPage.getProductPrice(),"Rs. 500");
-        assertEquals(productsAndDetailsPage.getProductCondition(),"Condition:");
-        assertEquals(productsAndDetailsPage.getProductCategory(),"Category: Women > Tops");
+        productsAndDetailsPage.sendProductName(product);
+        productsAndDetailsPage.clickSearchBtn();
+        productsAndDetailsPage.waitForProduct();
+        assertEquals(productsAndDetailsPage.getProducts(),product);
     }
-
 
 
 }

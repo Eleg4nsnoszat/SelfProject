@@ -17,7 +17,7 @@ public class util {
 
 
     public static WebElement WaitForTheElement(WebDriver driver, WebElement element){
-        return new WebDriverWait(driver, Duration.ofMillis(3000)).until(ExpectedConditions.elementToBeClickable(element));
+        return new WebDriverWait(driver, Duration.ofMillis(5000)).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static void navigateToUrl(String url) {

@@ -38,7 +38,7 @@ public class ContactUsPage {
     @FindBy(xpath = "//span[contains(text(),'Home')]")
     WebElement greenHomeBtn;
 
-    @FindBy(xpath = "/html/body/div/div[2]/div[1]/div/div[3]/form/div[5]/input")
+    @FindBy(xpath = "//input[@type='file']")
     WebElement choseFileBtn;
 
     private void setEmailField(String loginCorrectEmail){

@@ -1,10 +1,11 @@
 package Pages;
+import Util.ReadFromConfig;
 import Util.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProductsAndDetailsPage {
 
@@ -36,6 +37,14 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//b[contains(text(),'Brand:')]")
     WebElement productBrand;
 
+    @FindBy(xpath = "//input[@id='search_product']")
+    WebElement searchInputField;
+
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/p")
+    WebElement products;
+
+    @FindBy(xpath = "//button[@id='submit_search']")
+    WebElement searchBtn;
 
     public ProductsAndDetailsPage(WebDriver driver){
         this.driver = driver;
@@ -43,6 +52,10 @@ public class ProductsAndDetailsPage {
         PageFactory.initElements(driver,this);
     }
 
+
+    public String getProducts() {
+        return products.getText();
+    }
 
     public String getAllProductsText() {
         return allProductsText.getText();
@@ -75,5 +88,29 @@ public class ProductsAndDetailsPage {
     public void clickViewProductBtn(){
         util.WaitForTheElement(driver,viewProductBtn).click();
     }
+
+    public void sendProductName(String product) {
+         searchInputField.sendKeys(product);
+    }
+
+    public void waitForProduct(){
+        util.WaitForTheElement(driver,products);
+    }
+
+    public void clickSearchBtn(){
+        util.WaitForTheElement(driver,searchBtn).click();
+    }
+
+    //public void validateProducts(){
+      //  assertEquals();
+    //}
+
+    public void goToProductsPage(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        homePage.clickProductBtn();
+        util.switchToFrames("aswift_5","ad_iframe","dismiss-button");
+    }
+
+
 
 }
