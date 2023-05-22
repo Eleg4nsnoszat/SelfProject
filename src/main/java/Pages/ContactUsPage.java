@@ -38,6 +38,9 @@ public class ContactUsPage {
     @FindBy(xpath = "//span[contains(text(),'Home')]")
     WebElement greenHomeBtn;
 
+    @FindBy(xpath = "/html/body/div/div[2]/div[1]/div/div[3]/form/div[5]/input")
+    WebElement choseFileBtn;
+
     private void setEmailField(String loginCorrectEmail){
         util.WaitForTheElement(driver,emailField).sendKeys(loginCorrectEmail);
     }
@@ -69,6 +72,7 @@ public class ContactUsPage {
         this.setEmailField(ReadFromConfig.readFromFile(loginCorrectEmail));
         setSubjectField();
         setMessageField();
+        choseFileBtn.sendKeys("C:\\Users\\user\\Desktop\\hello_word.txt");
         clickSubmitBtn();
         util.acceptAlert();
         clickHomeBtn();
