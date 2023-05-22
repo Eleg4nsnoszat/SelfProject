@@ -2,8 +2,6 @@ package Pages;
 
 import Util.ReadFromConfig;
 import Util.util;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,16 +27,8 @@ public class TestCasesPage {
     public void VerifyTestCasesPage(String url){
         util.navigateToUrl(ReadFromConfig.readFromFile(url));
         homePage.clickTestCasesBtn();
-        switchToFrame();
+        util.switchToFrames("aswift_4", "ad_iframe", "dismiss-button");
         getTestCasesTitle();
-    }
-
-
-    public void switchToFrame(){
-        driver.switchTo().frame("aswift_4");
-        driver.switchTo().frame("ad_iframe");
-        driver.findElement(By.id("dismiss-button")).click();
-        driver.switchTo().defaultContent();
     }
 
     public String getTestCasesTitle() {

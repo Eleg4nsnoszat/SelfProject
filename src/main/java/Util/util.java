@@ -2,15 +2,11 @@ package Util;
 
 import Pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.NoSuchFrameException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.sound.midi.Soundbank;
 import java.time.Duration;
 
 public class util {
@@ -52,5 +48,19 @@ public class util {
     public static void acceptAlert() {
         Alert alert = driver.switchTo().alert();
         alert.accept();
+    }
+
+    public static void switchToFrames(String firstFrame, String secondFrame, String element){
+        driver.switchTo().frame(firstFrame);
+        driver.switchTo().frame(secondFrame);
+        util.WaitForTheElement(driver,driver.findElement(By.id(element)));
+        driver.findElement(By.id(element)).click();
+        driver.switchTo().defaultContent();
+    }
+
+    public static void switchToFrame(String firstFrame, String element){
+        driver.switchTo().frame(firstFrame);
+        driver.findElement(By.id(element)).click();
+        driver.switchTo().defaultContent();
     }
 }

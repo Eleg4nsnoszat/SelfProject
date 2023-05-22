@@ -13,7 +13,7 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(), 'Login')]")
     WebElement loginAndSignUpBtn;
 
-    @FindBy(xpath = "//i[contains(@class, 'material-icons card_travel')]")
+    @FindBy(xpath = "//a[@href='/products']")
     WebElement productsBtn;
 
     @FindBy(xpath = "//a[contains(text(), 'Cart')]")
@@ -56,6 +56,10 @@ public class HomePage {
 
     public void clickTestCasesBtn(){
         util.WaitForTheElement(driver,testCasesBtn).click();
+    }
+
+    public void clickProductBtn() {
+        util.WaitForTheElement(driver, productsBtn).click();
     }
 
 }
