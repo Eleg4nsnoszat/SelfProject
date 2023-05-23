@@ -1,6 +1,6 @@
 package Util;
 
-import Pages.HomePage;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,11 +13,9 @@ public class util {
 
     public static WebDriver driver;
 
-    public static HomePage homePage;
-
 
     public static WebElement WaitForTheElement(WebDriver driver, WebElement element){
-        return new WebDriverWait(driver, Duration.ofMillis(5000)).until(ExpectedConditions.elementToBeClickable(element));
+        return new WebDriverWait(driver, Duration.ofMillis(3000)).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static void navigateToUrl(String url) {
@@ -41,25 +39,24 @@ public class util {
         driver.quit();
     }
 
-    public static void LogOut(){
-        homePage.clickLogOutBtn();
-    }
-
     public static void acceptAlert() {
         Alert alert = driver.switchTo().alert();
         alert.accept();
+    }
+
+    public static void scrollDown(WebDriver driver, WebElement element){
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].scrollIntoView;",element);
+    }
+
+    public static void maximizeWindow(){
+        driver.manage().window().maximize();
     }
 
     public static void switchToFrames(String firstFrame, String secondFrame, String element){
         driver.switchTo().frame(firstFrame);
         driver.switchTo().frame(secondFrame);
         util.WaitForTheElement(driver,driver.findElement(By.id(element)));
-        driver.findElement(By.id(element)).click();
-        driver.switchTo().defaultContent();
-    }
-
-    public static void switchToFrame(String firstFrame, String element){
-        driver.switchTo().frame(firstFrame);
         driver.findElement(By.id(element)).click();
         driver.switchTo().defaultContent();
     }

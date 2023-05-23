@@ -1,6 +1,8 @@
 package Pages;
 
+import Util.ReadFromConfig;
 import Util.util;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,11 +33,31 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'Test Cases')]")
     WebElement testCasesBtn;
 
+    @FindBy(xpath = "//*[@id='footer']/div[1]/div/div/div[2]/div/h2")
+    WebElement subscriptionText;
+
+    @FindBy(xpath = "//input[@id='susbscribe_email']")
+    WebElement subscriptionEmail;
+
+    @FindBy(xpath = "//button[@id='subscribe']")
+    WebElement subscribeBtn;
+
+    @FindBy(xpath = "//*[@id='success-subscribe']/div")
+    WebElement accessAlert;
+
 
 
     public HomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public String getAccessAlert() {
+        return accessAlert.getText();
+    }
+
+    public String getSubscriptionText() {
+        return subscriptionText.getText();
     }
 
     public void clickLogInBtn() {
@@ -60,6 +82,25 @@ public class HomePage {
 
     public void clickProductBtn() {
         util.WaitForTheElement(driver, productsBtn).click();
+    }
+
+    public void clickCartBtn() {
+        util.WaitForTheElement(driver, cartBtn).click();
+    }
+
+    public void clickSubscriptionBtn() {
+        util.WaitForTheElement(driver, subscribeBtn).click();
+    }
+
+    public void writeEmailIntoField(){
+        util.WaitForTheElement(driver,subscriptionEmail).sendKeys("testsubemail@gmail.com");
+    }
+
+
+    public void fillOutSubscription(){
+        util.scrollDown(driver, subscriptionEmail);
+        writeEmailIntoField();
+        clickSubscriptionBtn();
     }
 
 }
