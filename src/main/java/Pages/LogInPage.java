@@ -25,6 +25,10 @@ public class LogInPage {
     @FindBy(xpath = "//p[contains(text(),'Your email or password is incorrect!')]")
     WebElement failedLogInText;
 
+    @FindBy(xpath = "//a//b")
+    WebElement userNameLoggedIn;
+
+
     public LogInPage(WebDriver driver){
         this.driver = driver;
         this.homePage = new HomePage(driver);
@@ -33,6 +37,10 @@ public class LogInPage {
 
     private void setEmail(String loginCorrectEmail){
         util.WaitForTheElement(driver, emailAddressField).sendKeys(loginCorrectEmail);
+    }
+
+    public String getUserNameLoggedIn() {
+        return userNameLoggedIn.getText();
     }
 
     private void setPassword(String loginCorrectPassword){
