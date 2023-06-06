@@ -33,7 +33,7 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'Test Cases')]")
     WebElement testCasesBtn;
 
-    @FindBy(xpath = "//*[@id='footer']/div[1]/div/div/div[2]/div/h2")
+    @FindBy(xpath = "//h2[contains(text(),'Subscription')]")
     WebElement subscriptionText;
 
     @FindBy(xpath = "//input[@id='susbscribe_email']")
@@ -57,7 +57,7 @@ public class HomePage {
     }
 
     public String getSubscriptionText() {
-        return subscriptionText.getText();
+       return subscriptionText.getText();
     }
 
     public void clickLogInBtn() {

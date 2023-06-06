@@ -13,6 +13,8 @@ public class ProductsAndDetailsPage {
 
     HomePage homePage;
 
+    ViewCartPage viewCartPage;
+
     @FindBy(xpath = "//h2[@class='title text-center']")
     WebElement allProductsText;
 
@@ -46,15 +48,39 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//button[@id='submit_search']")
     WebElement searchBtn;
 
+    @FindBy(xpath = "//a[@data-product-id='1']")
+    WebElement firstProductAddCartBtn;
+
+    @FindBy(xpath = "//a[@data-product-id='2']")
+    WebElement secondProductAddCartBtn;
+
+    @FindBy(xpath = "//button[@class='btn btn-success close-modal btn-block']")
+    WebElement continueShoppingBtn;
+
+    @FindBy(xpath = "//*[@id='cartModal']/div/div/div[2]/p[2]/a/u")
+    WebElement viewCartBtn;
+
     public ProductsAndDetailsPage(WebDriver driver){
         this.driver = driver;
         this.homePage = new HomePage(driver);
+        this.viewCartPage = new ViewCartPage(driver);
         PageFactory.initElements(driver,this);
     }
 
 
     public String getProducts() {
         return products.getText();
+    }
+
+    public void clickAddCartBtn(WebElement element){
+        util.WaitForTheElement(driver, element).click();
+
+    }public void clickContinueShoppingBtn(){
+        util.WaitForTheElement(driver,continueShoppingBtn).click();
+    }
+
+    public void clickViewCartBtn(){
+        util.WaitForTheElement(driver,viewCartBtn).click();
     }
 
     public String getAllProductsText() {
@@ -101,16 +127,24 @@ public class ProductsAndDetailsPage {
         util.WaitForTheElement(driver,searchBtn).click();
     }
 
-    //public void validateProducts(){
-      //  assertEquals();
-    //}
 
     public void goToProductsPage(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
-        util.switchToFrames("aswift_5","ad_iframe","dismiss-button");
+        //util.switchToFrames("aswift_5","ad_iframe","dismiss-button");
     }
 
+    public void addProductToCart(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        homePage.clickProductBtn();
+        util.switchToFrames("aswift_4","ad_iframe","dismiss-button");
+        clickAddCartBtn(firstProductAddCartBtn);
+        clickContinueShoppingBtn();
+        clickAddCartBtn(secondProductAddCartBtn);
+        clickViewCartBtn();
+        viewCartPage.verifyProductProperties();
+
+    }
 
 
 }
