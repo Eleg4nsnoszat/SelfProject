@@ -1,7 +1,6 @@
 package Test;
 
 import Pages.HomePage;
-import Pages.LogInPage;
 import Pages.ProductsAndDetailsPage;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;

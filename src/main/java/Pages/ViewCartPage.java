@@ -1,6 +1,4 @@
 package Pages;
-
-import org.junit.jupiter.params.ParameterizedTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,27 +33,6 @@ public class ViewCartPage {
         this.driver = driver;
         homePage = new HomePage(driver);
         PageFactory.initElements(driver,this);
-    }
-
-
-    public String getFirstProductName() {
-        return firstProductName.getText();
-    }
-
-    public String getSecondProductName() {
-        return secondProductName.getText();
-    }
-
-    public String getCartPrice() {
-        return cartPrice.getText();
-    }
-
-    public String getProductQuantity() {
-        return productQuantity.getText();
-    }
-
-    public String getTotalPrice() {
-        return totalPrice.getText();
     }
 
     public void verifyProductProperties(){

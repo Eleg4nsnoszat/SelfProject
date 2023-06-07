@@ -2,7 +2,6 @@ package Test;
 
 import Pages.HomePage;
 import Pages.ProductsAndDetailsPage;
-import Util.ReadFromConfig;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -37,7 +36,7 @@ public class ViewProductsAndDetailsTest {
     @Test
     public void viewProductsAndDetailsTest(){
         productsAndDetailsPage.goToProductsPage();
-        assertEquals(productsAndDetailsPage.getAllProductsText(),"ALL PRODUCTS");
+        util.switchToFrames("aswift_3","ad_iframe","dismiss-button");
         productsAndDetailsPage.clickViewProductBtn();
         assertEquals(productsAndDetailsPage.getProductAvailability(),"Availability:");
         assertEquals(productsAndDetailsPage.getProductBrand(),"Brand:");

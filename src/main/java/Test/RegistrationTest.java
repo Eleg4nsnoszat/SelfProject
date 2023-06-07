@@ -52,6 +52,7 @@ public class RegistrationTest {
         registrationPage.RegisterWithUser("correctPassword","firstName","lastName","city","zipCode",
                 "mobileNumber","state","address1","address2");
         accountCreatedPage.clickContinueBtn();
+        util.switchToFrames("aswift_1","ad_iframe","dismiss-button");
         homePage.clickDeleteBtn();
         accountDeletedPage.clickContinueBtn();
     }

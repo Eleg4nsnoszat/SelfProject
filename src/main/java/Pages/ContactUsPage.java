@@ -57,14 +57,6 @@ public class ContactUsPage {
         util.WaitForTheElement(driver,nameField).sendKeys(firstName);
     }
 
-    private void clickSubmitBtn(){
-        util.WaitForTheElement(driver,submitBtn).click();
-    }
-
-    private void clickHomeBtn(){
-        util.WaitForTheElement(driver,greenHomeBtn).click();
-    }
-
     public void fillOutContactUs(String url,String loginCorrectEmail,String firstName){
         util.navigateToUrl(ReadFromConfig.readFromFile(url));
         homePage.clickContactUsBtn();
@@ -73,8 +65,8 @@ public class ContactUsPage {
         setSubjectField();
         setMessageField();
         choseFileBtn.sendKeys("C:\\Users\\user\\Desktop\\hello_word.txt");
-        clickSubmitBtn();
+        util.clickOnElement(submitBtn);
         util.acceptAlert();
-        clickHomeBtn();
+        util.clickOnElement(greenHomeBtn);
     }
 }

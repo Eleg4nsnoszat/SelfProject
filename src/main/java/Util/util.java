@@ -22,11 +22,6 @@ public class util {
         driver.get(url);
     }
 
-    public static void refreshPage() {
-        driver.navigate().refresh();
-    }
-
-
     public static void setChromeDriver() {
         WebDriverManager.chromedriver().setup();
     }
@@ -51,6 +46,10 @@ public class util {
 
     public static void maximizeWindow(){
         driver.manage().window().maximize();
+    }
+
+    public static void clickOnElement(WebElement element){
+        util.WaitForTheElement(driver,element).click();
     }
 
     public static void switchToFrames(String firstFrame, String secondFrame, String element){

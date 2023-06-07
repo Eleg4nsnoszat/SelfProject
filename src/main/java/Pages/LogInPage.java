@@ -47,16 +47,12 @@ public class LogInPage {
         util.WaitForTheElement(driver, passwordField).sendKeys(loginCorrectPassword);
     }
 
-    private void clickOnLogInButton() {
-        util.WaitForTheElement(driver, logInBtn).click();
-    }
-
     public void LogInWithUser(String url, String loginCorrectPassword, String loginCorrectEmail){
         util.navigateToUrl(ReadFromConfig.readFromFile(url));
         homePage.clickLogInBtn();
         this.setEmail(ReadFromConfig.readFromFile(loginCorrectEmail));
         this.setPassword(ReadFromConfig.readFromFile(loginCorrectPassword));
-        this.clickOnLogInButton();
+        util.clickOnElement(logInBtn);
     }
 
     public void LogInWithIncorrectData(String url,String incorrectEmail,String incorrectPassword){
@@ -64,7 +60,7 @@ public class LogInPage {
         homePage.clickLogInBtn();
         this.setEmail(ReadFromConfig.readFromFile(incorrectEmail));
         this.setPassword(ReadFromConfig.readFromFile(incorrectPassword));
-        this.clickOnLogInButton();
+        util.clickOnElement(logInBtn);
     }
 
     public String getFailedLogInText() {

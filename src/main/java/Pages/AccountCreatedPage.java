@@ -1,7 +1,6 @@
 package Pages;
 
 import Util.util;
-import com.beust.ah.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,8 +12,6 @@ public class AccountCreatedPage {
 
     HomePage homePage;
 
-    @FindBy(xpath = "//b[contains(text(),'Account Created!')]")
-    WebElement accountCreatedHeader;
 
     @FindBy(xpath = "//a[@data-qa='continue-button']")
     WebElement continueBtn;
@@ -28,12 +25,6 @@ public class AccountCreatedPage {
     public void clickContinueBtn(){
         util.WaitForTheElement(driver, continueBtn).click();
     }
-
-
-    public String getAccountCreatedHeader() {
-        return accountCreatedHeader.getText();
-    }
-
 
 
 }

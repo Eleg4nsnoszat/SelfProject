@@ -1,8 +1,5 @@
 package Pages;
-
-import Util.ReadFromConfig;
 import Util.util;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -88,9 +85,9 @@ public class HomePage {
         util.WaitForTheElement(driver, cartBtn).click();
     }
 
-    public void clickSubscriptionBtn() {
+    /*public void clickSubscriptionBtn() {
         util.WaitForTheElement(driver, subscribeBtn).click();
-    }
+    }*/
 
     public void writeEmailIntoField(){
         util.WaitForTheElement(driver,subscriptionEmail).sendKeys("testsubemail@gmail.com");
@@ -100,7 +97,8 @@ public class HomePage {
     public void fillOutSubscription(){
         util.scrollDown(driver, subscriptionEmail);
         writeEmailIntoField();
-        clickSubscriptionBtn();
+        util.clickOnElement(subscribeBtn);
+        //clickSubscriptionBtn();
     }
 
 }

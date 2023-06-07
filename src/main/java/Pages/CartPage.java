@@ -1,7 +1,6 @@
 package Pages;
 
 import Util.util;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,14 +44,11 @@ public class CartPage {
         util.WaitForTheElement(driver,subscriptionEmail).sendKeys("testsubemail@gmail.com");
     }
 
-    public void clickSubscriptionBtn() {
-        util.WaitForTheElement(driver, subscribeBtn).click();
-    }
 
     public void fillOutSubscriptionCartPage(){
         util.scrollDown(driver, subscriptionEmail);
         writeEmailIntoField();
-        clickSubscriptionBtn();
+        util.clickOnElement(subscribeBtn);
     }
 
 

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ProductsAndDetailsPage {
 
@@ -15,10 +15,10 @@ public class ProductsAndDetailsPage {
 
     ViewCartPage viewCartPage;
 
-    @FindBy(xpath = "//h2[@class='title text-center']")
+    @FindBy(xpath = "//h2[contains(text(),'All Products')]")
     WebElement allProductsText;
 
-    @FindBy(xpath = "//a[@href='/product_details/1']")
+    @FindBy(xpath = "//a[contains(text(),'View Product')]")
     WebElement viewProductBtn;
 
     @FindBy(xpath = "//h2[contains(text(),'Blue Top')]")
@@ -75,7 +75,8 @@ public class ProductsAndDetailsPage {
     public void clickAddCartBtn(WebElement element){
         util.WaitForTheElement(driver, element).click();
 
-    }public void clickContinueShoppingBtn(){
+    }
+    public void clickContinueShoppingBtn(){
         util.WaitForTheElement(driver,continueShoppingBtn).click();
     }
 
@@ -131,7 +132,7 @@ public class ProductsAndDetailsPage {
     public void goToProductsPage(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
-        //util.switchToFrames("aswift_5","ad_iframe","dismiss-button");
+       // util.switchToFrames("aswift_3","ad_iframe","dismiss_button");
     }
 
     public void addProductToCart(){
