@@ -28,6 +28,11 @@ public class ViewCartPage {
     @FindBy(xpath = "//p[@class='cart_total_price']")
     WebElement totalPrice;
 
+    @FindBy(xpath = "//a[@class='btn btn-default check_out']")
+    WebElement proceedToCheckOutBtn;
+
+    @FindBy(xpath = "//u[contains(text(),'Register / Login')]")
+    WebElement registerAndLoginBtn;
 
     public ViewCartPage(WebDriver driver){
         this.driver = driver;
@@ -35,11 +40,18 @@ public class ViewCartPage {
         PageFactory.initElements(driver,this);
     }
 
+    public WebElement getProceedToCheckOutBtn() {
+        return proceedToCheckOutBtn;
+    }
+
+    public WebElement getRegisterAndLoginBtn() {
+        return registerAndLoginBtn;
+    }
+
     public void verifyProductProperties(){
         assertEquals(productQuantity.getText(),"1");
         assertEquals(totalPrice.getText(),"Rs. 500");
         assertEquals(cartPrice.getText(),"Rs. 500");
         assertEquals(firstProductName.getText(),"Blue Top");
-
     }
 }

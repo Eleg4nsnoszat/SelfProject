@@ -48,4 +48,10 @@ public class SignUpPage {
         this.clickOnSignUpButton();
     }
 
+    public void fillOutSignUp(String username, String email){
+        setUsername(ReadFromConfig.readFromFile(username));
+        setEmail(ReadFromConfig.readFromFile(email));
+        clickOnSignUpButton();
+    }
+
 }

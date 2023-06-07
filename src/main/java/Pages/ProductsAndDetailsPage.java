@@ -138,13 +138,12 @@ public class ProductsAndDetailsPage {
     public void addProductToCart(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
-        util.switchToFrames("aswift_4","ad_iframe","dismiss-button");
+        util.switchToFrames("aswift_3","ad_iframe","dismiss-button");
         clickAddCartBtn(firstProductAddCartBtn);
         clickContinueShoppingBtn();
         clickAddCartBtn(secondProductAddCartBtn);
         clickViewCartBtn();
         viewCartPage.verifyProductProperties();
-
     }
 
 
