@@ -24,6 +24,7 @@ public class TestCasesPageVisibleTest {
     @BeforeEach
     public void setUp() {
         util.getChromeDriver();
+        util.maximizeWindow();
         homePage = new HomePage(util.driver);
         testCasesPage = new TestCasesPage(util.driver);
     }

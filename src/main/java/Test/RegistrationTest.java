@@ -37,6 +37,7 @@ public class RegistrationTest {
         accountCreatedPage = new AccountCreatedPage(util.driver);
         accountDeletedPage = new AccountDeletedPage(util.driver);
         registrationPage = new RegistrationPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach

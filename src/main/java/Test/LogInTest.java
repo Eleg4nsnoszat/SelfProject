@@ -26,6 +26,7 @@ public class LogInTest {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
         logInPage = new LogInPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach

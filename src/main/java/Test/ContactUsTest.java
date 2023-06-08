@@ -37,6 +37,7 @@ public class ContactUsTest {
         accountDeletedPage = new AccountDeletedPage(util.driver);
         logInPage = new LogInPage(util.driver);
         contactUsPage = new ContactUsPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach

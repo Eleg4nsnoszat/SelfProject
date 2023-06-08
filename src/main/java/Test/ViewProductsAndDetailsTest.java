@@ -24,6 +24,7 @@ public class ViewProductsAndDetailsTest {
     @BeforeEach
     public void setUp(){
         util.getChromeDriver();
+        util.maximizeWindow();
         homePage = new HomePage(util.driver);
         productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
     }

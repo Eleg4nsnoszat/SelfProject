@@ -27,6 +27,7 @@ public class SearchProductTest {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
         productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach

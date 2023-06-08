@@ -38,6 +38,7 @@ public class RegisterBeforeCheckOutTest {
         checkOutPage = new CheckOutPage(util.driver);
         productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
         viewCartPage = new ViewCartPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach
