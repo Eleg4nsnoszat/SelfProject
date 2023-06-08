@@ -52,11 +52,11 @@ public class util {
         util.WaitForTheElement(driver,element).click();
     }
 
-    public static void switchToFrames(String firstFrame, String secondFrame, String element){
-        driver.switchTo().frame(firstFrame);
-        driver.switchTo().frame(secondFrame);
-        util.WaitForTheElement(driver,driver.findElement(By.id(element)));
-        driver.findElement(By.id(element)).click();
-        driver.switchTo().defaultContent();
+
+    public static void hideElements() {
+        String jsCode1 = "document.querySelectorAll('[id^=aswift]').forEach(iframe => iframe.remove());";
+        String jsCode2 = "document.querySelectorAll('[class^=adsbygoogle]').forEach(iframe => iframe.remove());";
+        ((JavascriptExecutor) driver).executeScript(jsCode1);
+        ((JavascriptExecutor) driver).executeScript(jsCode2);
     }
 }

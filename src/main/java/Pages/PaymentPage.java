@@ -1,8 +1,5 @@
 package Pages;
-
-import Util.ReadFromConfig;
 import Util.util;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -70,6 +67,7 @@ public class PaymentPage {
         sendExpMonth(expirationMonth);
         sendExpYear(expirationYear);
         clickPayBtn();
+        util.hideElements();
     }
 
 

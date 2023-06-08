@@ -36,7 +36,7 @@ public class ViewProductsAndDetailsTest {
     @Test
     public void viewProductsAndDetailsTest(){
         productsAndDetailsPage.goToProductsPage();
-        util.switchToFrames("aswift_3","ad_iframe","dismiss-button");
+        util.hideElements();
         productsAndDetailsPage.clickViewProductBtn();
         assertEquals(productsAndDetailsPage.getProductAvailability(),"Availability:");
         assertEquals(productsAndDetailsPage.getProductBrand(),"Brand:");

@@ -27,7 +27,7 @@ public class TestCasesPage {
     public void VerifyTestCasesPage(String url){
         util.navigateToUrl(ReadFromConfig.readFromFile(url));
         homePage.clickTestCasesBtn();
-        util.switchToFrames("aswift_4", "ad_iframe", "dismiss-button");
+        util.hideElements();
         getTestCasesTitle();
     }
 

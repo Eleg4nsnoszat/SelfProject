@@ -37,7 +37,7 @@ public class LogInTest {
     @Test
     public void successLogIn(){
         logInPage.LogInWithUser("url","loginCorrectPassword", "loginCorrectEmail");
-        assertEquals(logInPage.getUserNameLoggedIn(),"user");
+        assertEquals(logInPage.getUserNameLoggedIn(),"dontdelete");
         homePage.clickLogOutBtn();
     }
 

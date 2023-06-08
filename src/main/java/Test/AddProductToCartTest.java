@@ -34,7 +34,7 @@ public class AddProductToCartTest {
 
     @Test
     public void addProductToCart(){
-        productsAndDetailsPage.addProductToCart();
+        productsAndDetailsPage.addProductsToCart();
 
     }
 }

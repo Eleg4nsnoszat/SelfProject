@@ -156,6 +156,7 @@ public class RegistrationPage {
         this.setZipcode(ReadFromConfig.readFromFile(zipCode));
         this.setMobileNumber(ReadFromConfig.readFromFile(mobileNumber));
         this.clickCreateAccountBtn();
+
     }
 
 

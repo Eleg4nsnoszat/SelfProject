@@ -15,10 +15,6 @@ public class ViewCartPage {
     @FindBy(xpath = "//a[contains(text(),'Blue Top')]")
     WebElement firstProductName;
 
-
-    @FindBy(xpath = "//a[contains(text(),'Man Tshirt')]")
-    WebElement secondProductName;
-
     @FindBy(xpath = "//td[@class='cart_price']")
     WebElement cartPrice;
 

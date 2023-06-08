@@ -132,18 +132,24 @@ public class ProductsAndDetailsPage {
     public void goToProductsPage(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
-       // util.switchToFrames("aswift_3","ad_iframe","dismiss_button");
     }
 
-    public void addProductToCart(){
+    public void addProductsToCart(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
-        util.switchToFrames("aswift_3","ad_iframe","dismiss-button");
+        util.hideElements();
         clickAddCartBtn(firstProductAddCartBtn);
         clickContinueShoppingBtn();
         clickAddCartBtn(secondProductAddCartBtn);
         clickViewCartBtn();
         viewCartPage.verifyProductProperties();
+    }
+
+    public void addAProductToCart(){
+        homePage.clickProductBtn();
+        util.hideElements();
+        clickAddCartBtn(firstProductAddCartBtn);
+        clickViewCartBtn();
     }
 
 

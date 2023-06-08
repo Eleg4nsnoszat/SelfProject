@@ -85,9 +85,6 @@ public class HomePage {
         util.WaitForTheElement(driver, cartBtn).click();
     }
 
-    /*public void clickSubscriptionBtn() {
-        util.WaitForTheElement(driver, subscribeBtn).click();
-    }*/
 
     public void writeEmailIntoField(){
         util.WaitForTheElement(driver,subscriptionEmail).sendKeys("testsubemail@gmail.com");
@@ -98,7 +95,6 @@ public class HomePage {
         util.scrollDown(driver, subscriptionEmail);
         writeEmailIntoField();
         util.clickOnElement(subscribeBtn);
-        //clickSubscriptionBtn();
     }
 
 }

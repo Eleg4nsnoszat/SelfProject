@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RegisterWhileCheckoutTest {
+public class RegisterBeforeCheckOutTest {
 
     SignUpPage signUpPage;
 
@@ -46,20 +46,24 @@ public class RegisterWhileCheckoutTest {
     }
 
     @Test
-    public void registerWhileCheckOutTest(){
-        productsAndDetailsPage.addProductsToCart();
+    public void registerBeforeCheckout(){
+        signUpPage.SignUpWithUser("url","correctUsername","correctEmail");
+        registrationPage.RegisterWithUser("correctPassword","firstName",
+                        "lastName",
+                                "city","zipCode","mobileNumber",
+                            "state","address1","address2");
+        accountCreatedPage.clickContinueBtn();
+        util.hideElements();
+        productsAndDetailsPage.addAProductToCart();
         util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
-        util.clickOnElement(viewCartPage.getRegisterAndLoginBtn());
-        signUpPage.fillOutSignUp("correctUsername","correctEmail");
-        registrationPage.RegisterWithUser("correctPassword","firstName","lastName",
-                                            "city","zipCode","mobileNumber","state","address1","address2");
-        homePage.clickCartBtn();
-        util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
+        util.hideElements();
         util.clickOnElement(checkOutPage.getPlaceOrderBtn());
+        util.hideElements();
         paymentPage.payAndConfirm("nameOnCard","cardNumber","expirationMonth",
-                                    "expirationYear","CVC");
+                "expirationYear","CVC");
         homePage.clickDeleteBtn();
         accountDeletedPage.clickContinueBtn();
     }
+
 
 }
