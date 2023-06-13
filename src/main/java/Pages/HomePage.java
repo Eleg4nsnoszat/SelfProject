@@ -1,9 +1,12 @@
 package Pages;
+import Util.ReadFromConfig;
 import Util.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HomePage {
 
@@ -42,11 +45,54 @@ public class HomePage {
     @FindBy(xpath = "//*[@id='success-subscribe']/div")
     WebElement accessAlert;
 
+    @FindBy(xpath = "//h2[contains(text(),'Category')]")
+    WebElement categoryText;
+
+    @FindBy(xpath = "//a[@href='#Women']")
+    WebElement womenSideBarBtn;
+
+    @FindBy(xpath = "//a[@href='/category_products/1']")
+    WebElement womenSidebarFirstCategoryBtn;
+
+    @FindBy(xpath = "//h2[contains(text(),'Women - Dress Products')]")
+    WebElement dressProductsText;
+
+    @FindBy(xpath = "//a[@href='#Men']")
+    WebElement MenSideBarBtn;
+
+    @FindBy(xpath = "//a[@href='/category_products/3']")
+    WebElement MenSidebarThirdCategoryBtn;
+
+    @FindBy(xpath = "//h2[contains(text(),'Men - Tshirts Products')]")
+    WebElement TshirtsProductsText;
 
 
     public HomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public void clickWomenSidebarFirstCategoryBtn(){
+        util.WaitForTheElement(driver,womenSidebarFirstCategoryBtn).click();
+    }
+
+    public void clickMenSideBarBtn(){
+        util.WaitForTheElement(driver,MenSideBarBtn).click();
+    }
+
+    public void clickMenSidebarThirdCategoryBtn(){
+        util.WaitForTheElement(driver,MenSidebarThirdCategoryBtn).click();
+    }
+
+    public WebElement getDressProductsText() {
+        return dressProductsText;
+    }
+
+    public WebElement getTshirtsProductsText() {
+        return TshirtsProductsText;
+    }
+    public WebElement getCategoryText() {
+        return categoryText;
     }
 
     public String getAccessAlert() {
@@ -67,6 +113,10 @@ public class HomePage {
 
     public void clickLogOutBtn(){
         util.WaitForTheElement(driver,logOutBtn).click();
+    }
+
+    public void clickWomenSideBarBtn(){
+        util.WaitForTheElement(driver,womenSideBarBtn).click();
     }
 
     public void clickContactUsBtn(){
@@ -96,5 +146,21 @@ public class HomePage {
         writeEmailIntoField();
         util.clickOnElement(subscribeBtn);
     }
+
+    public void viewProductCategory(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        assertEquals(getCategoryText().getText(),"CATEGORY");
+        clickWomenSideBarBtn();
+        clickWomenSidebarFirstCategoryBtn();
+        util.hideElements();
+        clickWomenSidebarFirstCategoryBtn();
+        assertEquals(getDressProductsText().getText(),"WOMEN - DRESS PRODUCTS");
+        clickMenSideBarBtn();
+        clickMenSidebarThirdCategoryBtn();
+        assertEquals(getTshirtsProductsText().getText(),"MEN - TSHIRTS PRODUCTS");
+    }
+
+
+
 
 }

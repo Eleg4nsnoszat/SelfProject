@@ -85,12 +85,13 @@ public class ProductsAndDetailsPage {
         util.WaitForTheElement(driver, element).click();
 
     }
-    public void clickContinueShoppingBtn(){
-        util.WaitForTheElement(driver,continueShoppingBtn).click();
-    }
 
     public void clickViewCartBtn(){
         util.WaitForTheElement(driver,viewCartBtn).click();
+    }
+
+    public void clickContinueShoppingBtn(){
+        util.WaitForTheElement(driver,continueShoppingBtn).click();
     }
 
     public String getProductName() {
