@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ProductsAndDetailsPage {
 
@@ -13,10 +15,14 @@ public class ProductsAndDetailsPage {
 
     HomePage homePage;
 
-    ViewCartPage viewCartPage;
+    @FindBy(xpath = "//td[@class='cart_price']")
+    WebElement cartPrice;
 
-    @FindBy(xpath = "//h2[contains(text(),'All Products')]")
-    WebElement allProductsText;
+    @FindBy(xpath = "//td//button[@class='disabled']")
+    WebElement productQuantity;
+
+    @FindBy(xpath = "//p[@class='cart_total_price']")
+    WebElement totalPrice;
 
     @FindBy(xpath = "//a[contains(text(),'View Product')]")
     WebElement viewProductBtn;
@@ -51,6 +57,9 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//a[@data-product-id='1']")
     WebElement firstProductAddCartBtn;
 
+    @FindBy(xpath = "//a[@href='/product_details/1']")
+    WebElement firstProductName;
+
     @FindBy(xpath = "//a[@data-product-id='2']")
     WebElement secondProductAddCartBtn;
 
@@ -63,7 +72,6 @@ public class ProductsAndDetailsPage {
     public ProductsAndDetailsPage(WebDriver driver){
         this.driver = driver;
         this.homePage = new HomePage(driver);
-        this.viewCartPage = new ViewCartPage(driver);
         PageFactory.initElements(driver,this);
     }
 
@@ -71,6 +79,7 @@ public class ProductsAndDetailsPage {
     public String getProducts() {
         return products.getText();
     }
+
 
     public void clickAddCartBtn(WebElement element){
         util.WaitForTheElement(driver, element).click();
@@ -82,10 +91,6 @@ public class ProductsAndDetailsPage {
 
     public void clickViewCartBtn(){
         util.WaitForTheElement(driver,viewCartBtn).click();
-    }
-
-    public String getAllProductsText() {
-        return allProductsText.getText();
     }
 
     public String getProductName() {
@@ -134,6 +139,13 @@ public class ProductsAndDetailsPage {
         homePage.clickProductBtn();
     }
 
+    public void verifyProductProperties(){
+        assertEquals(productQuantity.getText(),"1");
+        assertEquals(totalPrice.getText(),"Rs. 500");
+        assertEquals(cartPrice.getText(),"Rs. 500");
+        assertEquals(firstProductName.getText(),"Blue Top");
+    }
+
     public void addProductsToCart(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
@@ -142,11 +154,10 @@ public class ProductsAndDetailsPage {
         clickContinueShoppingBtn();
         clickAddCartBtn(secondProductAddCartBtn);
         clickViewCartBtn();
-        viewCartPage.verifyProductProperties();
+        verifyProductProperties();
     }
 
     public void addAProductToCart(){
-        homePage.clickProductBtn();
         util.hideElements();
         clickAddCartBtn(firstProductAddCartBtn);
         clickViewCartBtn();

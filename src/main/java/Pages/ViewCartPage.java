@@ -1,6 +1,9 @@
 package Pages;
+import Util.ReadFromConfig;
+import Util.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.webauthn.model.AuthenticatorId;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -12,17 +15,10 @@ public class ViewCartPage {
 
     HomePage homePage;
 
-    @FindBy(xpath = "//a[contains(text(),'Blue Top')]")
+    ProductsAndDetailsPage productsAndDetailsPage;
+
+    @FindBy(xpath = "//a[@href='/product_details/1']")
     WebElement firstProductName;
-
-    @FindBy(xpath = "//td[@class='cart_price']")
-    WebElement cartPrice;
-
-    @FindBy(xpath = "//td//button[@class='disabled']")
-    WebElement productQuantity;
-
-    @FindBy(xpath = "//p[@class='cart_total_price']")
-    WebElement totalPrice;
 
     @FindBy(xpath = "//a[@class='btn btn-default check_out']")
     WebElement proceedToCheckOutBtn;
@@ -30,10 +26,21 @@ public class ViewCartPage {
     @FindBy(xpath = "//u[contains(text(),'Register / Login')]")
     WebElement registerAndLoginBtn;
 
+    @FindBy(xpath = "//b[contains(text(),'Cart is empty!')]")
+    WebElement cartEmptyText;
+
+    @FindBy(xpath = "//a[@class='cart_quantity_delete']")
+    WebElement deleteQuantity;
+
     public ViewCartPage(WebDriver driver){
         this.driver = driver;
-        homePage = new HomePage(driver);
+        this.homePage = new HomePage(driver);
+        this.productsAndDetailsPage = new ProductsAndDetailsPage(driver);
         PageFactory.initElements(driver,this);
+    }
+
+    public WebElement getCartEmptyText() {
+        return cartEmptyText;
     }
 
     public WebElement getProceedToCheckOutBtn() {
@@ -44,10 +51,14 @@ public class ViewCartPage {
         return registerAndLoginBtn;
     }
 
-    public void verifyProductProperties(){
-        assertEquals(productQuantity.getText(),"1");
-        assertEquals(totalPrice.getText(),"Rs. 500");
-        assertEquals(cartPrice.getText(),"Rs. 500");
+    public void removeFromCart(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        homePage.clickProductBtn();
+        util.hideElements();
+        productsAndDetailsPage.addAProductToCart();
         assertEquals(firstProductName.getText(),"Blue Top");
+        util.clickOnElement(deleteQuantity);
+        util.WaitForTheElement(driver,getCartEmptyText());
+        assertEquals(getCartEmptyText().getText(),"Cart is empty!");
     }
 }
