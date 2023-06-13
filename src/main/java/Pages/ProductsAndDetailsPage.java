@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ProductsAndDetailsPage {
@@ -81,6 +82,12 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//p[contains(text(),'Men Tshirt')]")
     WebElement menTshirtText;
 
+    @FindBy(xpath = "//a[@data-product-id='43']")
+    WebElement product43thAddCartBtn;
+
+    @FindBy(xpath = "//a[@href='/product_details/43']")
+    WebElement productName43th;
+
     public ProductsAndDetailsPage(WebDriver driver){
         this.driver = driver;
         this.homePage = new HomePage(driver);
@@ -93,9 +100,16 @@ public class ProductsAndDetailsPage {
     }
 
 
-    public void clickAddCartBtn(WebElement element){
-        util.WaitForTheElement(driver, element).click();
+    public WebElement getFirstProductName() {
+        return firstProductName;
+    }
 
+    public WebElement getProduct43thAddCartBtn() {
+        return productName43th;
+    }
+
+    public void click43thProductBtn(){
+        util.WaitForTheElement(driver, product43thAddCartBtn).click();
     }
 
     public WebElement getBrandsText() {
@@ -142,6 +156,18 @@ public class ProductsAndDetailsPage {
         util.WaitForTheElement(driver,viewProductBtn).click();
     }
 
+    public void clickFirstProduct(){
+        util.WaitForTheElement(driver,firstProductAddCartBtn).click();
+    }
+
+    public void clickSecondProduct(){
+        util.WaitForTheElement(driver,secondProductAddCartBtn).click();
+    }
+
+    public void click43thProduct(){
+        util.WaitForTheElement(driver, product43thAddCartBtn).click();
+    }
+
     public void sendProductName(String product) {
          searchInputField.sendKeys(product);
     }
@@ -158,6 +184,8 @@ public class ProductsAndDetailsPage {
     public void goToProductsPage(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
+        util.hideElements();
+        homePage.clickProductBtn();
     }
 
     public void verifyProductProperties(){
@@ -171,16 +199,16 @@ public class ProductsAndDetailsPage {
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
         util.hideElements();
-        clickAddCartBtn(firstProductAddCartBtn);
+        clickFirstProduct();
         clickContinueShoppingBtn();
-        clickAddCartBtn(secondProductAddCartBtn);
+        clickSecondProduct();
         clickViewCartBtn();
         verifyProductProperties();
     }
 
     public void addAProductToCart(){
         util.hideElements();
-        clickAddCartBtn(firstProductAddCartBtn);
+        clickFirstProduct();
         clickViewCartBtn();
     }
 
@@ -197,5 +225,32 @@ public class ProductsAndDetailsPage {
         assertEquals(getMenTshirtText().getText(),"Men Tshirt");
     }
 
+    public void searchForProduct(String product){
+        goToProductsPage();
+        sendProductName(product);
+        clickSearchBtn();
+        util.hideElements();
+        waitForProduct();
+        assertEquals(getProducts(),product);
+    }
+
+    public void searchAndAddProduct(){
+        goToProductsPage();
+        sendProductName("Blue Top");
+        clickSearchBtn();
+        util.hideElements();
+        waitForProduct();
+        addAProductToCart();
+        assertTrue(firstProductName.isDisplayed());
+        goToProductsPage();
+        sendProductName("GRAPHIC DESIGN MEN T SHIRT - BLUE");
+        clickSearchBtn();
+        util.hideElements();
+        waitForProduct();
+        assertTrue(product43thAddCartBtn.isDisplayed());
+        click43thProductBtn();
+        util.hideElements();
+        clickViewCartBtn();
+    }
 
 }
