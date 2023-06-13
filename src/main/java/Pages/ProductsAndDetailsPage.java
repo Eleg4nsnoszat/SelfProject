@@ -27,7 +27,7 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//a[contains(text(),'View Product')]")
     WebElement viewProductBtn;
 
-    @FindBy(xpath = "//h2[contains(text(),'Blue Top')]")
+    @FindBy(xpath = "//p[contains(text(),'Blue Top')]")
     WebElement productName;
 
     @FindBy(xpath = "//p[contains(text(),'Category: Women > Tops')]")
@@ -69,6 +69,18 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//*[@id='cartModal']/div/div/div[2]/p[2]/a/u")
     WebElement viewCartBtn;
 
+    @FindBy(xpath = "//h2[contains(text(),'Brands')]")
+    WebElement brandsText;
+
+    @FindBy(xpath = "//a[@href='/brand_products/Polo']")
+    WebElement poloProductBtn;
+
+    @FindBy(xpath = "//a[@href='/brand_products/H&M']")
+    WebElement HMProductBtn;
+
+    @FindBy(xpath = "//p[contains(text(),'Men Tshirt')]")
+    WebElement menTshirtText;
+
     public ProductsAndDetailsPage(WebDriver driver){
         this.driver = driver;
         this.homePage = new HomePage(driver);
@@ -86,6 +98,14 @@ public class ProductsAndDetailsPage {
 
     }
 
+    public WebElement getBrandsText() {
+        return brandsText;
+    }
+
+    public WebElement getMenTshirtText() {
+        return menTshirtText;
+    }
+
     public void clickViewCartBtn(){
         util.WaitForTheElement(driver,viewCartBtn).click();
     }
@@ -94,8 +114,8 @@ public class ProductsAndDetailsPage {
         util.WaitForTheElement(driver,continueShoppingBtn).click();
     }
 
-    public String getProductName() {
-        return productName.getText();
+    public WebElement getProductName() {
+        return productName;
     }
 
     public String getProductCategory() {
@@ -162,6 +182,19 @@ public class ProductsAndDetailsPage {
         util.hideElements();
         clickAddCartBtn(firstProductAddCartBtn);
         clickViewCartBtn();
+    }
+
+    public void viewBrandsAndProducts(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        homePage.clickProductBtn();
+        util.hideElements();
+        assertEquals(getBrandsText().getText(),"BRANDS");
+        util.clickOnElement(poloProductBtn);
+        util.hideElements();
+        assertEquals(getProductName().getText(),"Blue Top");
+        util.clickOnElement(HMProductBtn);
+        util.hideElements();
+        assertEquals(getMenTshirtText().getText(),"Men Tshirt");
     }
 
 
