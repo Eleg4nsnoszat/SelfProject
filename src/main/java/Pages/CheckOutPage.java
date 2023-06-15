@@ -14,10 +14,17 @@ public class CheckOutPage {
     @FindBy(xpath = "//a[@href='/payment']")
     WebElement placeOrderBtn;
 
+    @FindBy(xpath = "//li[contains(text(),'userTest street, 12')]")
+    WebElement firstAddressText;
+
 
     public CheckOutPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
+    }
+
+    public WebElement getFirstAddressText() {
+        return firstAddressText;
     }
 
     public void clickPlaceOrderBtn() {
