@@ -56,7 +56,7 @@ public class RegisterWhileCheckoutTest {
                                             "city","zipCode","mobileNumber","state","address1","address2");
         homePage.clickCartBtn();
         util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
-        util.clickOnElement(checkOutPage.getPlaceOrderBtn());
+        checkOutPage.scrollToPlaceOrder();
         paymentPage.payAndConfirm("nameOnCard","cardNumber","expirationMonth",
                                     "expirationYear","CVC");
         homePage.clickDeleteBtn();

@@ -46,7 +46,6 @@ public class CartPage {
 
 
     public void fillOutSubscriptionCartPage(){
-        util.scrollDown(driver, subscriptionEmail);
         writeEmailIntoField();
         util.clickOnElement(subscribeBtn);
     }

@@ -55,10 +55,11 @@ public class RegisterBeforeCheckOutTest {
                             "state","address1","address2");
         accountCreatedPage.clickContinueBtn();
         util.hideElements();
+        accountCreatedPage.clickContinueBtn();
         productsAndDetailsPage.addAProductToCart();
         util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
         util.hideElements();
-        util.clickOnElement(checkOutPage.getPlaceOrderBtn());
+        checkOutPage.scrollToPlaceOrder();
         util.hideElements();
         paymentPage.payAndConfirm("nameOnCard","cardNumber","expirationMonth",
                 "expirationYear","CVC");

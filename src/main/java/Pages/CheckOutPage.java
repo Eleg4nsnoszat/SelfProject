@@ -1,5 +1,6 @@
 package Pages;
 
+import Util.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +20,12 @@ public class CheckOutPage {
         PageFactory.initElements(driver,this);
     }
 
-    public WebElement getPlaceOrderBtn() {
-        return placeOrderBtn;
+    public void clickPlaceOrderBtn() {
+        placeOrderBtn.click();
     }
 
+    public void scrollToPlaceOrder(){
+        util.scrollDown(driver,7000);
+        clickPlaceOrderBtn();
+    }
 }

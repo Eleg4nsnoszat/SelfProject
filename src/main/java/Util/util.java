@@ -39,9 +39,14 @@ public class util {
         alert.accept();
     }
 
-    public static void scrollDown(WebDriver driver, WebElement element){
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].scrollIntoView;",element);
+    public static void scrollDown(WebDriver driver,int pixel){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,"+ pixel +")");
+    }
+
+    public static void scrollUp(WebDriver driver){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,-10000)");
     }
 
     public static void maximizeWindow(){

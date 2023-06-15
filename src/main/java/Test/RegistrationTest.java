@@ -54,6 +54,7 @@ public class RegistrationTest {
                 "mobileNumber","state","address1","address2");
         accountCreatedPage.clickContinueBtn();
         util.hideElements();
+        homePage.clickHomeBtn();
         homePage.clickDeleteBtn();
         accountDeletedPage.clickContinueBtn();
     }

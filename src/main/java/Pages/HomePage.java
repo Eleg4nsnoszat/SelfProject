@@ -66,6 +66,15 @@ public class HomePage {
     @FindBy(xpath = "//h2[contains(text(),'Men - Tshirts Products')]")
     WebElement TshirtsProductsText;
 
+    @FindBy(xpath = "//a[@href='/']")
+    WebElement homeBtn;
+
+    @FindBy(xpath = "//h2[contains(text(),'RECOMMENDED ITEMS')]")
+    WebElement recommendedItemsText;
+
+    @FindBy(xpath = "//*[@id='recommended-item-carousel']/div/div[1]/div[1]/div/div/div/a")
+    WebElement recommendedBlueTopItemBtn;
+
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -76,8 +85,19 @@ public class HomePage {
         util.WaitForTheElement(driver,womenSidebarFirstCategoryBtn).click();
     }
 
+    public WebElement getRecommendedItemsText() {
+        return recommendedItemsText;
+    }
+
+    public void clickRecommendedAddCartBtn() {
+        util.WaitForTheElement(driver,recommendedBlueTopItemBtn).click();
+    }
+
     public void clickMenSideBarBtn(){
         util.WaitForTheElement(driver,MenSideBarBtn).click();
+    }
+    public void clickHomeBtn(){
+        util.WaitForTheElement(driver,homeBtn).click();
     }
 
     public void clickMenSidebarThirdCategoryBtn(){
@@ -142,7 +162,7 @@ public class HomePage {
 
 
     public void fillOutSubscription(){
-        util.scrollDown(driver, subscriptionEmail);
+        //util.scrollDown(driver);
         writeEmailIntoField();
         util.clickOnElement(subscribeBtn);
     }
@@ -160,7 +180,8 @@ public class HomePage {
         assertEquals(getTshirtsProductsText().getText(),"MEN - TSHIRTS PRODUCTS");
     }
 
-
-
-
+    public void scrollToRecommendedItem(){
+        util.scrollDown(driver,7500);
+        clickRecommendedAddCartBtn();
+    }
 }

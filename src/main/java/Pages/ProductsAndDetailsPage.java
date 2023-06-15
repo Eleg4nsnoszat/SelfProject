@@ -25,9 +25,6 @@ public class ProductsAndDetailsPage {
     @FindBy(xpath = "//p[@class='cart_total_price']")
     WebElement totalPrice;
 
-    @FindBy(xpath = "//a[contains(text(),'View Product')]")
-    WebElement viewProductBtn;
-
     @FindBy(xpath = "//p[contains(text(),'Blue Top')]")
     WebElement productName;
 
@@ -153,7 +150,7 @@ public class ProductsAndDetailsPage {
     }
 
     public void clickViewProductBtn(){
-        util.WaitForTheElement(driver,viewProductBtn).click();
+        util.WaitForTheElement(driver,firstProductName).click();
     }
 
     public void clickFirstProduct(){
@@ -162,10 +159,6 @@ public class ProductsAndDetailsPage {
 
     public void clickSecondProduct(){
         util.WaitForTheElement(driver,secondProductAddCartBtn).click();
-    }
-
-    public void click43thProduct(){
-        util.WaitForTheElement(driver, product43thAddCartBtn).click();
     }
 
     public void sendProductName(String product) {
@@ -185,7 +178,6 @@ public class ProductsAndDetailsPage {
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
         homePage.clickProductBtn();
         util.hideElements();
-        homePage.clickProductBtn();
     }
 
     public void verifyProductProperties(){
