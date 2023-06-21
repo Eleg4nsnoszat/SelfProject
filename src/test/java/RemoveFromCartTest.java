@@ -1,23 +1,17 @@
-package Test;
-
 import Pages.HomePage;
-import Pages.LogInPage;
 import Pages.ProductsAndDetailsPage;
-import Util.ReadFromConfig;
+import Pages.ViewCartPage;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-public class AddFromRecommendedItemsTest {
+public class RemoveFromCartTest {
 
     HomePage homePage;
 
-    ProductsAndDetailsPage productsAndDetailsPage;
-
+    ViewCartPage viewCartPage;
 
     @BeforeAll
     public static void setUpDriver() {
@@ -28,7 +22,7 @@ public class AddFromRecommendedItemsTest {
     public void setUp() {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
-        productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
+        viewCartPage = new ViewCartPage(util.driver);
         util.maximizeWindow();
     }
 
@@ -37,14 +31,8 @@ public class AddFromRecommendedItemsTest {
         util.quitBrowser();
     }
 
-
     @Test
-    public void addFromRecommendedItemsTest(){
-        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
-        homePage.scrollToRecommendedItem();
-        productsAndDetailsPage.clickViewCartBtn();
-        assertTrue(productsAndDetailsPage.getFirstProductName().isDisplayed());
+    public void removeFromCartTest(){
+        viewCartPage.removeFromCart();
     }
-
-
 }

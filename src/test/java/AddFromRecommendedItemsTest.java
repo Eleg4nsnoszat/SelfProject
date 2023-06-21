@@ -1,14 +1,16 @@
-package Test;
-
 import Pages.HomePage;
+import Pages.LogInPage;
 import Pages.ProductsAndDetailsPage;
+import Util.ReadFromConfig;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AddProductToCartTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class AddFromRecommendedItemsTest {
 
     HomePage homePage;
 
@@ -33,9 +35,14 @@ public class AddProductToCartTest {
         util.quitBrowser();
     }
 
-    @Test
-    public void addProductToCart(){
-        productsAndDetailsPage.addProductsToCart();
 
+    @Test
+    public void addFromRecommendedItemsTest(){
+        util.navigateToUrl(ReadFromConfig.readFromFile("url"));
+        homePage.scrollToRecommendedItem();
+        productsAndDetailsPage.clickViewCartBtn();
+        assertTrue(productsAndDetailsPage.getFirstProductName().isDisplayed());
     }
+
+
 }

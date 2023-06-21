@@ -1,22 +1,19 @@
-package Test;
-
 import Pages.HomePage;
 import Pages.ProductsAndDetailsPage;
+import Pages.ReviewPage;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebElement;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class SearchProductTest {
+public class ReviewProductTest {
 
     HomePage homePage;
 
     ProductsAndDetailsPage productsAndDetailsPage;
+
+    ReviewPage reviewPage;
 
     @BeforeAll
     public static void setUpDriver(){
@@ -28,6 +25,7 @@ public class SearchProductTest {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
         productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
+        reviewPage = new ReviewPage(util.driver);
         util.maximizeWindow();
     }
 
@@ -36,11 +34,9 @@ public class SearchProductTest {
         util.quitBrowser();
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/Product.csv", numLinesToSkip = 1)
-    public void searchForProduct(String product){
-        productsAndDetailsPage.searchForProduct(product);
+
+    @Test
+    public void reviewProductTest(){
+        reviewPage.addReview();
     }
-
-
 }

@@ -1,4 +1,3 @@
-package Test;
 import Pages.HomePage;
 import Pages.LogInPage;
 import Pages.ProductsAndDetailsPage;

@@ -1,5 +1,4 @@
-package Test;
-
+import Pages.CartPage;
 import Pages.HomePage;
 import Util.ReadFromConfig;
 import Util.util;
@@ -10,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SubscriptionTest {
-
+public class SubscriptionOnCartPageTest {
     HomePage homePage;
+
+    CartPage cartPage;
 
 
     @BeforeAll
@@ -25,6 +25,7 @@ public class SubscriptionTest {
         util.getChromeDriver();
         util.maximizeWindow();
         homePage = new HomePage(util.driver);
+        cartPage = new CartPage(util.driver);
     }
 
     @AfterEach
@@ -34,10 +35,12 @@ public class SubscriptionTest {
 
 
     @Test
-    public void subscriptionTest(){
+    public void subscriptionOnCartPageTest(){
         util.navigateToUrl(ReadFromConfig.readFromFile("url"));
-        assertEquals(homePage.getSubscriptionText(),"SUBSCRIPTION");
-        homePage.fillOutSubscription();
-        assertEquals(homePage.getAccessAlert(),"You have been successfully subscribed!");
+        homePage.clickCartBtn();
+        assertEquals(cartPage.getSubscriptionTextCartPage(),"SUBSCRIPTION");
+        cartPage.fillOutSubscriptionCartPage();
+        assertEquals(cartPage.getAccessAlertCartPage(),"You have been successfully subscribed!");
     }
+
 }

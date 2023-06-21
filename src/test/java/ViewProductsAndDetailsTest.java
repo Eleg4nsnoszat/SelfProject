@@ -1,5 +1,3 @@
-package Test;
-
 import Pages.HomePage;
 import Pages.ProductsAndDetailsPage;
 import Util.util;

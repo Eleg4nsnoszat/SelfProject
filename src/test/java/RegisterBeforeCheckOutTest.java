@@ -1,14 +1,10 @@
-package Test;
-
 import Pages.*;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class VerifyAddressOnCheckoutPageTest {
+public class RegisterBeforeCheckOutTest {
 
     SignUpPage signUpPage;
 
@@ -48,22 +44,26 @@ public class VerifyAddressOnCheckoutPageTest {
         util.quitBrowser();
     }
 
-
     @Test
-    public void verifyAddressOnCheckoutPageTest(){
+    public void registerBeforeCheckout(){
         signUpPage.SignUpWithUser("url","correctUsername","correctEmail");
         registrationPage.RegisterWithUser("correctPassword","firstName",
-                "lastName",
-                "city","zipCode","mobileNumber",
-                "state","address1","address2");
+                        "lastName",
+                                "city","zipCode","mobileNumber",
+                            "state","address1","address2");
         accountCreatedPage.clickContinueBtn();
         util.hideElements();
         accountCreatedPage.clickContinueBtn();
         productsAndDetailsPage.addAProductToCart();
         util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
         util.hideElements();
-        assertEquals(checkOutPage.getFirstAddressText().getText(),"userTest street, 12");
+        checkOutPage.scrollToPlaceOrder();
+        util.hideElements();
+        paymentPage.payAndConfirm("nameOnCard","cardNumber","expirationMonth",
+                "expirationYear","CVC");
         homePage.clickDeleteBtn();
         accountDeletedPage.clickContinueBtn();
     }
+
+
 }

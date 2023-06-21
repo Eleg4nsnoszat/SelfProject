@@ -1,5 +1,3 @@
-package Test;
-
 import Pages.*;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;

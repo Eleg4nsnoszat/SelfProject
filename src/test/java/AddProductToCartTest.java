@@ -1,19 +1,16 @@
-package Test;
-
-import Pages.*;
+import Pages.HomePage;
+import Pages.ProductsAndDetailsPage;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCasesPageVisibleTest {
-
+public class AddProductToCartTest {
 
     HomePage homePage;
 
-    TestCasesPage testCasesPage;
+    ProductsAndDetailsPage productsAndDetailsPage;
 
 
     @BeforeAll
@@ -24,9 +21,9 @@ public class TestCasesPageVisibleTest {
     @BeforeEach
     public void setUp() {
         util.getChromeDriver();
-        util.maximizeWindow();
         homePage = new HomePage(util.driver);
-        testCasesPage = new TestCasesPage(util.driver);
+        productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
+        util.maximizeWindow();
     }
 
     @AfterEach
@@ -34,13 +31,8 @@ public class TestCasesPageVisibleTest {
         util.quitBrowser();
     }
 
-
     @Test
-    public void testCasesVisibleTest(){
-        testCasesPage.VerifyTestCasesPage("url");
-        assertEquals(testCasesPage.getTestCasesTitle(),"TEST CASES");
+    public void addProductToCart(){
+        productsAndDetailsPage.addProductsToCart();
     }
-
-
-
 }

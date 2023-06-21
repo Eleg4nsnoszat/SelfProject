@@ -1,12 +1,13 @@
-package Test;
-
 import Pages.*;
-import Util.util;
+import Util.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RegisterWhileCheckoutTest {
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class VerifyAddressOnCheckoutPageTest {
 
     SignUpPage signUpPage;
 
@@ -46,21 +47,22 @@ public class RegisterWhileCheckoutTest {
         util.quitBrowser();
     }
 
+
     @Test
-    public void registerWhileCheckOutTest(){
-        productsAndDetailsPage.addProductsToCart();
+    public void verifyAddressOnCheckoutPageTest(){
+        signUpPage.SignUpWithUser("url","correctUsername","correctEmail");
+        registrationPage.RegisterWithUser("correctPassword","firstName",
+                "lastName",
+                "city","zipCode","mobileNumber",
+                "state","address1","address2");
+        accountCreatedPage.clickContinueBtn();
+        util.hideElements();
+        accountCreatedPage.clickContinueBtn();
+        productsAndDetailsPage.addAProductToCart();
         util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
-        util.clickOnElement(viewCartPage.getRegisterAndLoginBtn());
-        signUpPage.fillOutSignUp("correctUsername","correctEmail");
-        registrationPage.RegisterWithUser("correctPassword","firstName","lastName",
-                                            "city","zipCode","mobileNumber","state","address1","address2");
-        homePage.clickCartBtn();
-        util.clickOnElement(viewCartPage.getProceedToCheckOutBtn());
-        checkOutPage.scrollToPlaceOrder();
-        paymentPage.payAndConfirm("nameOnCard","cardNumber","expirationMonth",
-                                    "expirationYear","CVC");
+        util.hideElements();
+        assertEquals(checkOutPage.getFirstAddressText().getText(), ReadFromConfig.readFromFile("address1"));
         homePage.clickDeleteBtn();
         accountDeletedPage.clickContinueBtn();
     }
-
 }

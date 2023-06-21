@@ -1,19 +1,16 @@
-package Test;
-
 import Pages.HomePage;
 import Pages.ProductsAndDetailsPage;
-import Pages.ViewCartPage;
 import Util.util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RemoveFromCartTest {
-
+public class ViewBarndsAndProductsTest {
     HomePage homePage;
 
-    ViewCartPage viewCartPage;
+    ProductsAndDetailsPage productsAndDetailsPage;
+
 
     @BeforeAll
     public static void setUpDriver() {
@@ -24,7 +21,7 @@ public class RemoveFromCartTest {
     public void setUp() {
         util.getChromeDriver();
         homePage = new HomePage(util.driver);
-        viewCartPage = new ViewCartPage(util.driver);
+        productsAndDetailsPage = new ProductsAndDetailsPage(util.driver);
         util.maximizeWindow();
     }
 
@@ -33,8 +30,9 @@ public class RemoveFromCartTest {
         util.quitBrowser();
     }
 
+
     @Test
-    public void removeFromCartTest(){
-        viewCartPage.removeFromCart();
+    public void viewBrandsAndProductsTest() {
+        productsAndDetailsPage.viewBrandsAndProducts();
     }
 }
