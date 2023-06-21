@@ -8,8 +8,7 @@ Here you can find the website https://www.automationexercise.com
 
 ## Config file
 
-- The project include a config file. that's required for running some tests. the following spreadsheet contains
-the key value pairs.
+- You will need to create a config file with the given parameters below.
 
 
 | url               | The Automation Exercise website       |
